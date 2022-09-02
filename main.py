@@ -1,23 +1,38 @@
 # Phonebook command-line application
-
 def add_contact(phonebook, name, number):
-    return "TODO: add contact"
+    if name in phonebook:
+        return f"{name} is already in phonebook"
+    else:
+        phonebook[name] = number
+        return f"{name} added"
 
 def find_contact(phonebook, name):
-    return "TODO: find contact"
+    if name in phonebook:
+        return phonebook[name]
+    else:
+        return f"{name} not found"
 
 def update_contact(phonebook, name, number):
-    return "TODO: update contact"
+    if name in phonebook:
+        phonebook[name] = number
+        return f"{name} updated"
+    else:
+        return f"{name} not found"
 
 def delete_contact(phonebook, name):
-    return "TODO: delete contact"
+    if name in phonebook:
+        del phonebook[name]
+        return f"{name} deleted"
+    else:
+        return f"{name} not found"
     
 def list_contacts(phonebook):
-    return "TODO: list contacts"
+    result = ""
+    for name in phonebook:
+        number = phonebook[name]
+        result += f"{name}: {number}\n"
+    return result
 
-
-# The interface for the phonebook program
-# Uses the functions above to create an interactive phonebook
 def run_interface():
     phonebook = {}
     while True:
