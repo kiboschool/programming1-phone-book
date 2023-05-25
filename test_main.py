@@ -1,7 +1,10 @@
 import unittest
 from main import *
 
+from gradescope_utils.autograder_utils.decorators import weight
+
 class Test(unittest.TestCase):
+    @weight(10)
     def test_add_contact(self):
         phonebook = {}
         name = "Ope"
@@ -11,6 +14,7 @@ class Test(unittest.TestCase):
         self.assertEqual(phonebook[name], number)
         self.assertEqual(len(phonebook), 1)
 
+    @weight(10)
     def test_add_contact_already_present(self):
         phonebook = {"Ope": "+234 555 666 7777"}
         name = "Ope"
@@ -18,6 +22,7 @@ class Test(unittest.TestCase):
         result = add_contact(phonebook, name, number)
         self.assertEqual(result, f"{name} is already in phonebook")
 
+    @weight(10)
     def test_find_contact(self):
         phonebook = {"Ope": "+234 555 666 7777"}
         phonebook_copy = {"Ope": "+234 555 666 7777"}
@@ -27,6 +32,7 @@ class Test(unittest.TestCase):
         # no modifications
         self.assertEqual(phonebook, phonebook_copy)
 
+    @weight(10)
     def test_find_contact_missing(self):
         phonebook = {"Ope": "+234 555 666 7777"}
         phonebook_copy = {"Ope": "+234 555 666 7777"}
@@ -36,6 +42,7 @@ class Test(unittest.TestCase):
         # no modifications
         self.assertEqual(phonebook, phonebook_copy)
 
+    @weight(10)
     def test_update_contact(self):
         phonebook = {"Ope": "+234 555 555 5555"}
         name = "Ope"
@@ -45,6 +52,7 @@ class Test(unittest.TestCase):
         self.assertEqual(phonebook[name], number)
         self.assertEqual(len(phonebook), 1)
     
+    @weight(10)
     def test_update_contact_missing(self):
         phonebook = {"Ope": "+234 555 555 5555"}
         name = "Oyin"
@@ -53,6 +61,7 @@ class Test(unittest.TestCase):
         self.assertEqual(result, f"{name} not found")
         self.assertEqual(len(phonebook), 1)
 
+    @weight(10)
     def test_delete_contact(self):
         phonebook = {"Ope": "+234 555 555 5555"}
         name = "Ope"
@@ -60,6 +69,7 @@ class Test(unittest.TestCase):
         self.assertEqual(result, f"{name} deleted")
         self.assertEqual(len(phonebook), 0)
     
+    @weight(10)
     def test_delete_contact_missing(self):
         phonebook = {"Ope": "+234 555 555 5555"}
         name = "Oyin"
@@ -67,6 +77,7 @@ class Test(unittest.TestCase):
         self.assertEqual(result, f"{name} not found")
         self.assertEqual(len(phonebook), 1)
 
+    @weight(10)
     def test_list_contacts(self):
         phonebook = {
                 "Ope": "+234 555 555 5555",
